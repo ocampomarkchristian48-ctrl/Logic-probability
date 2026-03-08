@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Logic & Probability Challenge</title>
+<title>Logic Probability Game</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -29,10 +29,10 @@ Click the correct answer before the timer runs out.
 </p>
 
 <p class="bigText">
-Correct answers give points. Try to get the highest score!
+The next question will automatically appear.
 </p>
 
-<button onclick="nextToStart()">Next</button>
+<button onclick="showStart()">Next</button>
 
 </div>
 
@@ -42,17 +42,13 @@ Correct answers give points. Try to get the highest score!
 
 <h2>Ready to Play?</h2>
 
-<input id="playerName" placeholder="Enter your name">
-
-<br><br>
-
 <button onclick="startGame()">Start Game</button>
 
 </div>
 
 
 <!-- GAME DESCRIPTION -->
-<div id="game1desc" class="hidden">
+<div id="gameDesc" class="hidden">
 
 <h2>The Mystery Bag</h2>
 
@@ -76,61 +72,25 @@ You will pick 2 balls randomly without putting the first one back.
 
 
 <!-- GAME AREA -->
-<div id="gameArea" class="card hidden">
+<div id="gameArea" class="hidden card">
 
 <div id="progressBar">
 <div id="progress"></div>
 </div>
 
-<div id="timer">Time: 10</div>
+<div id="timer">10</div>
 
 <div id="question"></div>
 
 <div id="answers"></div>
 
+<div id="feedback"></div>
+
 <div id="score">Score: 0</div>
 
 </div>
 
-
-<!-- GAME 2 -->
-<div id="game2desc" class="hidden">
-
-<h2>Game 2: Who is the Doctor?</h2>
-
-<p class="bigText">
-Ana<br>
-Ben<br>
-Cara
-</p>
-
-<p class="bigText">
-Doctor<br>
-Teacher<br>
-Engineer
-</p>
-
-<button onclick="startGame2()">Start Puzzle</button>
-
 </div>
-
-
-<!-- LEADERBOARD -->
-<div id="leaderboard" class="hidden">
-
-<h2>🏆 Leaderboard</h2>
-
-<div id="leaders"></div>
-
-<button onclick="location.reload()">Play Again</button>
-
-</div>
-
-</div>
-
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4b0c1e1f08.mp3">
-</audio>
 
 <script src="script.js"></script>
 
