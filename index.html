@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>Logic & Probability Game</title>
+<title>Logic & Probability Challenge</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🧠 Logic & Probability Game</h1>
+<h1 class="title">🧠 Logic & Probability Challenge</h1>
 
 <!-- INSTRUCTIONS -->
-<div id="instructions" class="card">
+<div id="instructions">
 
 <h2>Instructions</h2>
 
-<p>
-Welcome to the Logic and Probability Challenge!
+<p class="bigText">
+Read the situation carefully and answer the questions.
 </p>
 
-<ul>
-<li>Read the situation carefully.</li>
-<li>Answer the questions using logic and probability.</li>
-<li>Each correct answer gives you 1 point.</li>
-<li>Try to finish both games and get the highest score.</li>
-</ul>
+<p class="bigText">
+Click the correct answer before the timer runs out.
+</p>
+
+<p class="bigText">
+Correct answers give points. Try to get the highest score!
+</p>
 
 <button onclick="nextToStart()">Next</button>
 
@@ -34,11 +38,13 @@ Welcome to the Logic and Probability Challenge!
 
 
 <!-- START PAGE -->
-<div id="startPage" class="card hidden">
+<div id="startPage" class="hidden">
 
-<h2>Ready to Start?</h2>
+<h2>Ready to Play?</h2>
 
-<p>Click start when you are ready.</p>
+<input id="playerName" placeholder="Enter your name">
+
+<br><br>
 
 <button onclick="startGame()">Start Game</button>
 
@@ -46,98 +52,85 @@ Welcome to the Logic and Probability Challenge!
 
 
 <!-- GAME DESCRIPTION -->
-<div id="game1desc" class="card hidden">
+<div id="game1desc" class="hidden">
 
 <h2>The Mystery Bag</h2>
 
-<p>
+<p class="bigText">
 A bag contains 10 balls:
 </p>
 
-<p>
+<p class="bigText">
 5 Red<br>
 3 Blue<br>
 2 Green
 </p>
 
-<p>
+<p class="bigText">
 You will pick 2 balls randomly without putting the first one back.
 </p>
 
-<button onclick="startQuestions()">Next</button>
+<button onclick="startQuestions()">Start Questions</button>
 
 </div>
 
 
-<!-- QUESTION AREA -->
+<!-- GAME AREA -->
 <div id="gameArea" class="card hidden">
 
-<div id="question"></div>
-<div id="answers"></div>
+<div id="progressBar">
+<div id="progress"></div>
+</div>
 
-<button onclick="nextQuestion()">Next</button>
+<div id="timer">Time: 10</div>
+
+<div id="question"></div>
+
+<div id="answers"></div>
 
 <div id="score">Score: 0</div>
 
 </div>
 
 
-<!-- GAME 2 DESCRIPTION -->
-<div id="game2desc" class="card hidden">
+<!-- GAME 2 -->
+<div id="game2desc" class="hidden">
 
 <h2>Game 2: Who is the Doctor?</h2>
 
-<p>There are three people:</p>
-
-<p>
+<p class="bigText">
 Ana<br>
 Ben<br>
 Cara
 </p>
 
-<p>There are three professions:</p>
-
-<p>
+<p class="bigText">
 Doctor<br>
 Teacher<br>
 Engineer
-</p>
-
-<p><b>Rules:</b></p>
-
-<ul>
-<li>Each person has only one profession.</li>
-<li>No profession repeats.</li>
-</ul>
-
-<p><b>Clues:</b></p>
-
-<p>
-1️⃣ ∀x (Doctor(x) → StudiesMedicine(x))<br>
-Anyone who is a doctor studied medicine.
-</p>
-
-<p>
-2️⃣ Teacher(Ben) = False
-</p>
-
-<p>
-3️⃣ Engineer(Ana) = False
-</p>
-
-<p>
-4️⃣ Doctor(Cara) = False
-</p>
-
-<p>
-5️⃣ ∀x [(¬Doctor(x) ∧ ¬Engineer(x)) → Teacher(x)]
 </p>
 
 <button onclick="startGame2()">Start Puzzle</button>
 
 </div>
 
+
+<!-- LEADERBOARD -->
+<div id="leaderboard" class="hidden">
+
+<h2>🏆 Leaderboard</h2>
+
+<div id="leaders"></div>
+
+<button onclick="location.reload()">Play Again</button>
+
 </div>
+
+</div>
+
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4b0c1e1f08.mp3">
+</audio>
 
 <script src="script.js"></script>
 
