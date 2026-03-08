@@ -10,61 +10,134 @@
 
 <div class="container">
 
-<h1>🧠 Logic & Probability Challenge</h1>
+<h1>🧠 Logic & Probability Game</h1>
 
-<!-- INSTRUCTIONS PAGE -->
+<!-- INSTRUCTIONS -->
 <div id="instructions" class="card">
 
-<h2>Game Instructions</h2>
+<h2>Instructions</h2>
 
 <p>
-Welcome to the Logic & Probability Game!
+Welcome to the Logic and Probability Challenge!
 </p>
 
 <ul>
-<li>You will answer logic and probability questions.</li>
-<li>Choose the correct answer from the options.</li>
-<li>You will earn 1 point for every correct answer.</li>
-<li>Try to get the highest score!</li>
+<li>Read the situation carefully.</li>
+<li>Answer the questions using logic and probability.</li>
+<li>Each correct answer gives you 1 point.</li>
+<li>Try to finish both games and get the highest score.</li>
 </ul>
 
-<button onclick="showStart()">Next</button>
+<button onclick="nextToStart()">Next</button>
 
 </div>
+
 
 <!-- START PAGE -->
 <div id="startPage" class="card hidden">
 
-<h2>Ready to Play?</h2>
+<h2>Ready to Start?</h2>
 
-<p>Click the button below to start the game.</p>
+<p>Click start when you are ready.</p>
 
 <button onclick="startGame()">Start Game</button>
 
 </div>
 
-<!-- GAME PAGE -->
-<div id="gamePage" class="card hidden">
 
-<div id="question" class="question"></div>
+<!-- GAME DESCRIPTION -->
+<div id="game1desc" class="card hidden">
 
+<h2>The Mystery Bag</h2>
+
+<p>
+A bag contains 10 balls:
+</p>
+
+<p>
+5 Red<br>
+3 Blue<br>
+2 Green
+</p>
+
+<p>
+You will pick 2 balls randomly without putting the first one back.
+</p>
+
+<button onclick="startQuestions()">Next</button>
+
+</div>
+
+
+<!-- QUESTION AREA -->
+<div id="gameArea" class="card hidden">
+
+<div id="question"></div>
 <div id="answers"></div>
 
-<button class="next" onclick="nextQuestion()">Next Question</button>
+<button onclick="nextQuestion()">Next</button>
 
 <div id="score">Score: 0</div>
 
 </div>
 
+
+<!-- GAME 2 DESCRIPTION -->
+<div id="game2desc" class="card hidden">
+
+<h2>Game 2: Who is the Doctor?</h2>
+
+<p>There are three people:</p>
+
+<p>
+Ana<br>
+Ben<br>
+Cara
+</p>
+
+<p>There are three professions:</p>
+
+<p>
+Doctor<br>
+Teacher<br>
+Engineer
+</p>
+
+<p><b>Rules:</b></p>
+
+<ul>
+<li>Each person has only one profession.</li>
+<li>No profession repeats.</li>
+</ul>
+
+<p><b>Clues:</b></p>
+
+<p>
+1️⃣ ∀x (Doctor(x) → StudiesMedicine(x))<br>
+Anyone who is a doctor studied medicine.
+</p>
+
+<p>
+2️⃣ Teacher(Ben) = False
+</p>
+
+<p>
+3️⃣ Engineer(Ana) = False
+</p>
+
+<p>
+4️⃣ Doctor(Cara) = False
+</p>
+
+<p>
+5️⃣ ∀x [(¬Doctor(x) ∧ ¬Engineer(x)) → Teacher(x)]
+</p>
+
+<button onclick="startGame2()">Start Puzzle</button>
+
 </div>
 
-<audio id="correct">
-<source src="https://www.soundjay.com/buttons/sounds/button-4.mp3">
-</audio>
-
-<audio id="wrong">
-<source src="https://www.soundjay.com/buttons/sounds/button-10.mp3">
-</audio>
+</div>
 
 <script src="script.js"></script>
 
