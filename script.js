@@ -1,148 +1,238 @@
-let score = 0
-let current = 0
-let stage = 1
+let score=0
+let current=0
+let stage=1
+let timer
+let time=10
+let player=""
 
-const questions1 = [
+const q1=[
 
-{
-q:"1️⃣ What is the probability that both balls are red?",
-a:["2/9","1/5","5/9","1/2"],
-c:0
-},
+{q:"1️⃣ Probability both balls are red?",a:["2/9","1/5","5/9","1/2"],c:0},
 
-{
-q:"2️⃣ What is the probability that the first ball is blue and the second ball is green?",
-a:["1/15","1/9","3/10","2/5"],
-c:0
-},
+{q:"2️⃣ Probability first blue then green?",a:["1/15","1/9","3/10","2/5"],c:0},
 
-{
-q:"3️⃣ What is the probability that at least one ball is green?",
-a:["17/45","1/3","2/9","4/9"],
-c:0
-},
+{q:"3️⃣ Probability at least one green?",a:["17/45","1/3","2/9","4/9"],c:0},
 
-{
-q:"4️⃣ If you picked a red ball first, what is the probability the second ball is also red?",
-a:["4/9","5/9","1/2","1/3"],
-c:0
-},
+{q:"4️⃣ If first red, probability second red?",a:["4/9","5/9","1/2","1/3"],c:0},
 
-{
-q:"5️⃣ Which is more likely?",
-a:[
-"Getting two red balls",
-"Getting one blue and one green (any order)",
-"They are equal"
-],
-c:0
-}
+{q:"5️⃣ Which is more likely?",a:["Two red balls","One blue & one green","Equal"],c:0}
 
 ]
 
-const questions2 = [
+const q2=[
 
-{
-q:"Ana = ?",
-a:["Doctor","Teacher","Engineer"],
-c:0
-},
+{q:"Ana = ?",a:["Doctor","Teacher","Engineer"],c:0},
 
-{
-q:"Ben = ?",
-a:["Engineer","Teacher","Doctor"],
-c:0
-},
+{q:"Ben = ?",a:["Engineer","Teacher","Doctor"],c:0},
 
-{
-q:"Cara = ?",
-a:["Teacher","Doctor","Engineer"],
-c:0
-}
+{q:"Cara = ?",a:["Teacher","Doctor","Engineer"],c:0}
 
 ]
+
+function shuffle(arr){
+
+return arr.sort(()=>Math.random()-0.5)
+
+}
 
 function nextToStart(){
-document.getElementById("instructions").classList.add("hidden")
-document.getElementById("startPage").classList.remove("hidden")
+
+instructions.classList.add("hidden")
+startPage.classList.remove("hidden")
+
 }
 
 function startGame(){
-document.getElementById("startPage").classList.add("hidden")
-document.getElementById("game1desc").classList.remove("hidden")
+
+player=playerName.value || "Player"
+
+document.getElementById("bgMusic").play()
+
+startPage.classList.add("hidden")
+game1desc.classList.remove("hidden")
+
+shuffle(q1)
+
 }
 
 function startQuestions(){
-document.getElementById("game1desc").classList.add("hidden")
-document.getElementById("gameArea").classList.remove("hidden")
+
+game1desc.classList.add("hidden")
+gameArea.classList.remove("hidden")
+
 loadQuestion()
+
 }
 
 function startGame2(){
-document.getElementById("game2desc").classList.add("hidden")
-document.getElementById("gameArea").classList.remove("hidden")
-current = 0
-stage = 2
+
+game2desc.classList.add("hidden")
+gameArea.classList.remove("hidden")
+
+stage=2
+current=0
+
+shuffle(q2)
+
 loadQuestion()
+
+}
+
+function startTimer(){
+
+time=10
+
+timer=setInterval(()=>{
+
+time--
+
+timerDiv.innerText="Time: "+time
+
+if(time<=0){
+
+clearInterval(timer)
+nextQuestion()
+
+}
+
+},1000)
+
 }
 
 function loadQuestion(){
 
+clearInterval(timer)
+
 let q
 
-if(stage === 1){
-q = questions1[current]
-}else{
-q = questions2[current]
-}
+if(stage==1){q=q1[current]}else{q=q2[current]}
 
-document.getElementById("question").innerText = q.q
+question.innerText=q.q
 
-let ansHTML=""
+let html=""
 
 q.a.forEach((ans,i)=>{
-ansHTML += `<button onclick="check(${i})">${ans}</button>`
+
+html+=`<button onclick="answer(${i})">${ans}</button>`
+
 })
 
-document.getElementById("answers").innerHTML = ansHTML
+answers.innerHTML=html
+
+progress.style.width=((current+1)/5*100)+"%"
+
+timerDiv=document.getElementById("timer")
+
+startTimer()
+
 }
 
-function check(i){
+function answer(i){
+
+clearInterval(timer)
 
 let q
 
-if(stage===1){
-q=questions1[current]
-}else{
-q=questions2[current]
-}
+if(stage==1){q=q1[current]}else{q=q2[current]}
 
-if(i===q.c){
+if(i==q.c){
+
 score++
+
+confetti()
+
 }
 
-document.getElementById("score").innerText="Score: "+score
+scoreDiv.innerText="Score: "+score
+
+setTimeout(nextQuestion,500)
+
 }
 
 function nextQuestion(){
 
 current++
 
-if(stage===1 && current>=questions1.length){
+if(stage==1 && current>=q1.length){
 
-document.getElementById("gameArea").classList.add("hidden")
-document.getElementById("game2desc").classList.remove("hidden")
-
+gameArea.classList.add("hidden")
+game2desc.classList.remove("hidden")
 return
+
 }
 
-if(stage===2 && current>=questions2.length){
+if(stage==2 && current>=q2.length){
 
-alert("Game Finished! Final Score: "+score)
-location.reload()
+finishGame()
 return
+
 }
 
 loadQuestion()
+
+}
+
+function finishGame(){
+
+gameArea.classList.add("hidden")
+leaderboard.classList.remove("hidden")
+
+saveScore()
+
+showLeaders()
+
+}
+
+function saveScore(){
+
+let scores=JSON.parse(localStorage.getItem("scores"))||[]
+
+scores.push({name:player,score:score})
+
+scores.sort((a,b)=>b.score-a.score)
+
+scores=scores.slice(0,5)
+
+localStorage.setItem("scores",JSON.stringify(scores))
+
+}
+
+function showLeaders(){
+
+let scores=JSON.parse(localStorage.getItem("scores"))||[]
+
+leaders.innerHTML=""
+
+scores.forEach(s=>{
+
+leaders.innerHTML+=`<p>${s.name} - ${s.score}</p>`
+
+})
+
+}
+
+function confetti(){
+
+for(let i=0;i<50;i++){
+
+let div=document.createElement("div")
+
+div.style.position="fixed"
+div.style.width="8px"
+div.style.height="8px"
+div.style.background="yellow"
+div.style.left=Math.random()*100+"%"
+div.style.top="0"
+
+document.body.appendChild(div)
+
+div.animate([
+{transform:"translateY(0)"},
+{transform:"translateY(100vh)"}
+],{duration:1000})
+
+setTimeout(()=>div.remove(),1000)
+
+}
 
 }
