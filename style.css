@@ -1,20 +1,20 @@
 body{
 font-family: Arial;
-background: linear-gradient(135deg,#1e3c72,#2a5298);
+background: linear-gradient(135deg,#141E30,#243B55);
 color:white;
 text-align:center;
 margin:0;
-padding:0;
 }
 
 .container{
 max-width:900px;
 margin:auto;
-padding:30px;
+padding:40px;
 }
 
 h1{
 font-size:40px;
+margin-bottom:20px;
 }
 
 .card{
@@ -22,39 +22,47 @@ background:white;
 color:black;
 padding:30px;
 border-radius:15px;
-margin-top:20px;
 box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
+.hidden{
+display:none;
+}
+
 .question{
-font-size:22px;
+font-size:24px;
 margin-bottom:20px;
 }
 
 button{
-display:block;
-width:100%;
-padding:15px;
-margin:10px 0;
+padding:14px 25px;
 font-size:18px;
 border:none;
-border-radius:10px;
+border-radius:8px;
+cursor:pointer;
+margin:10px;
 background:#4CAF50;
 color:white;
-cursor:pointer;
-transition:0.2s;
 }
 
 button:hover{
 background:#45a049;
-transform:scale(1.03);
-}
-
-.score{
-font-size:22px;
-margin-top:20px;
+transform:scale(1.05);
 }
 
 .next{
 background:#ff9800;
+}
+
+ul{
+text-align:left;
+max-width:500px;
+margin:auto;
+font-size:18px;
+}
+
+#score{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
 }
