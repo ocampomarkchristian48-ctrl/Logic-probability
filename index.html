@@ -3,18 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Logic & Probability Game</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🧠 Logic & Probability Game</h1>
+<h1>🧠 Logic & Probability Challenge</h1>
 
-<div class="card">
+<!-- INSTRUCTIONS PAGE -->
+<div id="instructions" class="card">
+
+<h2>Game Instructions</h2>
+
+<p>
+Welcome to the Logic & Probability Game!
+</p>
+
+<ul>
+<li>You will answer logic and probability questions.</li>
+<li>Choose the correct answer from the options.</li>
+<li>You will earn 1 point for every correct answer.</li>
+<li>Try to get the highest score!</li>
+</ul>
+
+<button onclick="showStart()">Next</button>
+
+</div>
+
+<!-- START PAGE -->
+<div id="startPage" class="card hidden">
+
+<h2>Ready to Play?</h2>
+
+<p>Click the button below to start the game.</p>
+
+<button onclick="startGame()">Start Game</button>
+
+</div>
+
+<!-- GAME PAGE -->
+<div id="gamePage" class="card hidden">
 
 <div id="question" class="question"></div>
 
@@ -22,7 +52,7 @@
 
 <button class="next" onclick="nextQuestion()">Next Question</button>
 
-<div class="score" id="score">Score: 0</div>
+<div id="score">Score: 0</div>
 
 </div>
 
